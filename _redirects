@@ -1,0 +1,6 @@
+# Canonical host is www.getproxyview.com
+# Netlify applies these in order. 301 = permanent, which is what search engines need.
+
+http://getproxyview.com/*     https://www.getproxyview.com/:splat   301!
+https://getproxyview.com/*    https://www.getproxyview.com/:splat   301!
+http://www.getproxyview.com/* https://www.getproxyview.com/:splat   301!

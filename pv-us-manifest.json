@@ -1,0 +1,22 @@
+{
+  "name": "Proxyview — Authentication for the physical world",
+  "short_name": "Proxyview",
+  "description": "Proxyview authenticates physical-world evidence — not just whether the file is genuine, but whether the event it depicts actually occurred.",
+  "id": "/",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#0A0D12",
+  "theme_color": "#0A0D12",
+  "lang": "en",
+  "dir": "ltr",
+  "categories": ["business", "productivity", "utilities"],
+  "icons": [
+    { "src": "/pv-us-icon-32.png",       "sizes": "32x32",   "type": "image/png" },
+    { "src": "/pv-us-icon-192.png",      "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/pv-us-icon-512.png",      "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/pv-us-maskable-512.png",  "sizes": "512x512", "type": "image/png", "purpose": "maskable" },
+    { "src": "/favicon.svg",             "sizes": "any",     "type": "image/svg+xml" }
+  ]
+}

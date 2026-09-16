@@ -1,0 +1,43 @@
+# https://www.getproxyview.com/robots.txt
+
+User-agent: *
+Allow: /
+Disallow: /agent/
+Disallow: /api/
+Disallow: /admin/
+
+# AI crawlers — permitted. A structured summary is published at /llms.txt
+User-agent: GPTBot
+Allow: /
+
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: OAI-SearchBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: Claude-Web
+Allow: /
+
+User-agent: anthropic-ai
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+User-agent: Applebot-Extended
+Allow: /
+
+User-agent: CCBot
+Allow: /
+
+User-agent: Bytespider
+Disallow: /
+
+Sitemap: https://www.getproxyview.com/sitemap.xml

@@ -1,0 +1,912 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"/>
+<title>Proxyview — Authentication for the physical world</title>
+<meta name="description" content="AI-assisted decisions are only as reliable as the evidence they reason about. Proxyview authenticates physical-world evidence — not just whether the file is genuine, but whether the event it depicts actually occurred."/>
+<link rel="icon" type="image/x-icon" href="/pv-us-favicon.ico"/>
+<link rel="icon" type="image/svg+xml" href="/favicon.svg"/>
+<link rel="icon" type="image/png" sizes="32x32" href="/pv-us-icon-32.png"/>
+<link rel="icon" type="image/png" sizes="192x192" href="/pv-us-icon-192.png"/>
+<link rel="apple-touch-icon" sizes="180x180" href="/pv-us-apple-touch.png"/>
+<link rel="manifest" href="/pv-us-manifest.json"/>
+<meta name="apple-mobile-web-app-title" content="Proxyview"/>
+<meta name="application-name" content="Proxyview"/>
+<meta name="msapplication-TileColor" content="#0A0D12"/>
+<meta name="theme-color" content="#0A0D12"/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Proxyview — Authentication for the physical world"/>
+<meta property="og:image" content="https://www.getproxyview.com/pv-us-og.png"/>
+<meta property="og:image:width" content="1200"/>
+<meta property="og:image:height" content="630"/>
+<meta property="og:url" content="https://www.getproxyview.com/"/>
+<meta property="og:site_name" content="Proxyview"/>
+<meta property="og:locale" content="en_US"/>
+<meta property="og:description" content="AI-assisted decisions are only as reliable as the evidence they reason about. Proxyview authenticates physical-world evidence — not just whether the file is genuine, but whether the event it depicts actually occurred."/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Proxyview — Authentication for the physical world"/>
+<meta name="twitter:description" content="AI-assisted decisions are only as reliable as the evidence they reason about. Proxyview authenticates physical-world evidence — not just whether the file is genuine, but whether the event it depicts actually occurred."/>
+<meta name="twitter:image" content="https://www.getproxyview.com/pv-us-og.png"/>
+<meta name="robots" content="index,follow,max-image-preview:large"/>
+<link rel="canonical" href="https://www.getproxyview.com/"/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0A0D12;--surface:#111720;--surface-2:#161D28;
+  --border:rgba(255,255,255,.09);--border-2:rgba(255,255,255,.16);
+  --fg:#F2F5F8;--fg-2:#A3B0BC;--fg-3:#6B7885;
+  --accent:#22D3EE;--accent-bg:rgba(34,211,238,.10);--ok:#34D399;--bad:#F2764B;
+  --disp:"Space Grotesk",system-ui,sans-serif;
+  --sans:"Inter",system-ui,-apple-system,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,monospace;
+  --r:8px;--r-sm:5px;
+}
+*{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+html{-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition-duration:.05s!important}}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4,h5{font-family:var(--disp);font-weight:600;letter-spacing:-.025em;line-height:1.14}
+a{color:inherit;text-decoration:none}
+img,svg{display:block;max-width:100%}
+::selection{background:var(--accent-bg)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+.c{width:100%;max-width:1200px;margin:0 auto;padding:0 20px}
+@media(min-width:768px){.c{padding:0 32px}}
+@media(min-width:1100px){.c{padding:0 40px}}
+.sec{padding:58px 0}
+@media(min-width:768px){.sec{padding:88px 0}}
+@media(min-width:1100px){.sec{padding:106px 0}}
+.alt{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.eyebrow{font-family:var(--mono);font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);font-weight:500;display:inline-flex;align-items:center;gap:9px}
+.eyebrow::before{content:"";width:9px;height:10px;flex-shrink:0;background:currentColor;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%)}
+.h-sec{font-size:26px;margin-top:13px;letter-spacing:-.032em}
+@media(min-width:768px){.h-sec{font-size:33px}}
+@media(min-width:1100px){.h-sec{font-size:38px}}
+.p-sec{color:var(--fg-2);font-size:16px;margin-top:13px;max-width:60ch}
+@media(min-width:768px){.p-sec{font-size:17px}}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;font-family:var(--sans);font-size:15px;font-weight:500;padding:13px 22px;border-radius:var(--r-sm);border:1px solid transparent;cursor:pointer;transition:all .18s;min-height:46px}
+.btn-p{background:var(--accent);color:#04222A;border-color:var(--accent)}
+.btn-p:hover{background:#3DDDF5}
+.btn-s{background:transparent;color:var(--fg);border-color:var(--border-2)}
+.btn-s:hover{border-color:var(--accent);color:var(--accent)}
+@media(max-width:520px){.btn{width:100%}}
+.rev{opacity:0;transform:translateY(14px);transition:opacity .55s ease,transform .55s ease}
+.rev.in{opacity:1;transform:none}
+
+#nav{position:sticky;top:0;z-index:200;background:rgba(10,13,18,.88);backdrop-filter:blur(14px);border-bottom:1px solid transparent;transition:border-color .3s}
+#nav.on{border-bottom-color:var(--border)}
+.nav-in{display:flex;align-items:center;gap:12px;padding:12px 20px;max-width:1200px;margin:0 auto}
+@media(min-width:768px){.nav-in{padding:14px 32px}}
+@media(min-width:1100px){.nav-in{padding:15px 40px}}
+.brand{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:18px;font-weight:600;letter-spacing:-.03em;flex-shrink:0;color:var(--fg)}
+.brand svg{color:var(--accent)}
+.nav-links{display:none}
+@media(min-width:940px){.nav-links{display:flex;gap:26px;margin-left:38px}
+.nav-links a{font-size:14px;color:var(--fg-2);transition:color .2s}.nav-links a:hover{color:var(--fg)}}
+.nav-act{margin-left:auto;display:flex;align-items:center;gap:10px}
+.nav-act .btn{padding:9px 15px;font-size:14px;min-height:38px;width:auto}
+@media(max-width:620px){.nav-act .btn-s{display:none}}
+.burger{display:flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid var(--border);border-radius:var(--r-sm);background:transparent;cursor:pointer}
+@media(min-width:940px){.burger{display:none}}
+.burger span{display:block;width:17px;height:1.5px;background:var(--fg);position:relative}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:17px;height:1.5px;background:var(--fg)}
+.burger span::before{top:-5px}.burger span::after{top:5px}
+#mob{display:none;border-top:1px solid var(--border)}
+#mob.open{display:block}
+#mob a{display:block;padding:15px 20px;border-bottom:1px solid var(--border);font-size:16px;color:var(--fg-2)}
+
+.hero{padding:46px 0 52px;position:relative;overflow:hidden}
+@media(min-width:768px){.hero{padding:70px 0 78px}}
+@media(min-width:1100px){.hero{padding:86px 0 96px}}
+.hero::before{content:"";position:absolute;top:-150px;right:-150px;width:580px;height:580px;background:radial-gradient(circle,rgba(34,211,238,.10),transparent 66%);pointer-events:none}
+.hero::after{content:"";position:absolute;inset:0;pointer-events:none;opacity:.5;
+  background-image:linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.022) 1px,transparent 1px);
+  background-size:56px 56px;mask-image:radial-gradient(ellipse 80% 60% at 70% 40%,#000,transparent 75%)}
+.hero-in{position:relative;z-index:2}
+.hero h1{font-size:33px;letter-spacing:-.042em;line-height:1.04;margin-top:15px}
+@media(min-width:600px){.hero h1{font-size:42px}}
+@media(min-width:1000px){.hero h1{font-size:50px;max-width:13ch}}
+@media(min-width:1200px){.hero h1{font-size:56px}}
+.hero .sub{color:var(--fg-2);font-size:17px;margin-top:17px;max-width:50ch;line-height:1.55}
+@media(min-width:768px){.hero .sub{font-size:18px}}
+.hero-cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:520px){.hero-cta{flex-direction:column}}
+.hero-trust{margin-top:36px;padding-top:20px;border-top:1px solid var(--border);display:flex;flex-wrap:wrap;gap:16px 30px}
+.hero-trust div{font-family:var(--mono);font-size:11.5px;color:var(--fg-3);line-height:1.7}
+.hero-trust b{display:block;color:var(--fg-2);font-weight:400;font-size:12px}
+@media(min-width:1000px){.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}}
+.card{margin-top:34px;background:var(--surface);border:1px solid var(--border);border-radius:var(--r);overflow:hidden;box-shadow:0 22px 56px rgba(0,0,0,.4)}
+@media(min-width:1000px){.card{margin-top:0}}
+.card-top{display:flex;align-items:center;gap:9px;padding:12px 15px;border-bottom:1px solid var(--border);background:var(--surface-2)}
+.card-top .d{width:7px;height:7px;border-radius:50%;background:var(--ok);box-shadow:0 0 8px rgba(52,211,153,.7);flex-shrink:0}
+.card-top .t{font-family:var(--mono);font-size:11px;letter-spacing:.05em;color:var(--fg-2)}
+.card-top .i{margin-left:auto;font-family:var(--mono);font-size:10.5px;color:var(--fg-3)}
+.row{display:grid;grid-template-columns:1fr auto;gap:12px;align-items:center;padding:11px 15px}
+.row+.row{border-top:1px solid rgba(255,255,255,.05)}
+.row .k{font-family:var(--mono);font-size:11.5px;color:var(--fg-3)}
+.row .v{font-size:13.5px;text-align:right}
+.row .st{font-family:var(--mono);font-size:10.5px;letter-spacing:.05em;text-transform:uppercase;color:var(--ok);display:flex;align-items:center;gap:6px;justify-content:flex-end}
+.row .st::before{content:"";width:5px;height:5px;border-radius:50%;background:var(--ok);flex-shrink:0}
+.card-foot{padding:12px 15px;border-top:1px solid var(--border);background:var(--surface-2);display:flex;justify-content:space-between;gap:10px}
+.card-foot .vd{font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;text-transform:uppercase;color:var(--ok);font-weight:500}
+.card-foot .ms{font-family:var(--mono);font-size:10.5px;color:var(--fg-3)}
+
+.g{display:grid;gap:13px;margin-top:30px}
+@media(min-width:700px){.g-3{grid-template-columns:1fr 1fr;gap:14px}}
+@media(min-width:1080px){.g-3{grid-template-columns:repeat(3,1fr)}}
+@media(min-width:700px){.g-4{grid-template-columns:1fr 1fr;gap:14px}}
+@media(min-width:1080px){.g-4{grid-template-columns:repeat(4,1fr)}}
+.b{background:var(--surface);border:1px solid var(--border);border-radius:var(--r);padding:21px 19px;transition:border-color .2s}
+@media(min-width:768px){.b{padding:24px 22px}}
+.b:hover{border-color:var(--border-2)}
+.alt .b{background:var(--bg)}
+.b .lb{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:12px}
+.b h3{font-size:17px;margin-bottom:8px}
+.b h4{font-size:15.5px;margin-bottom:7px}
+.b p{font-size:14.5px;color:var(--fg-2);line-height:1.55}
+.b .out{margin-top:13px;padding-top:12px;border-top:1px solid var(--border);font-size:13.5px;color:var(--fg);line-height:1.5}
+.b .out b{color:var(--accent);font-weight:500;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;display:block;margin-bottom:5px}
+.note{margin-top:26px;background:var(--surface);border:1px solid var(--border);border-left:2px solid var(--accent);border-radius:var(--r-sm);padding:19px 21px}
+.alt .note{background:var(--bg)}
+.note h4{font-size:15px;margin-bottom:8px}
+.note p{font-size:14.5px;color:var(--fg-2);line-height:1.6}
+.big{font-family:var(--disp);font-size:29px;font-weight:600;letter-spacing:-.04em;color:var(--accent);line-height:1;margin-bottom:8px}
+
+.rail{margin-top:30px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--surface)}
+.alt .rail{background:var(--bg)}
+.rail-h{display:flex;align-items:center;gap:10px;padding:14px 18px;border-bottom:1px solid var(--border);background:var(--surface-2)}
+.alt .rail-h{background:var(--surface)}
+.rail-h span{font-family:var(--mono);font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-2)}
+.rail-g{display:grid}
+@media(min-width:960px){.rail-g{grid-template-columns:repeat(4,1fr)}}
+.st{padding:22px 20px;border-bottom:1px solid var(--border)}
+@media(min-width:960px){.st{border-bottom:0;border-right:1px solid var(--border)}.st:last-child{border-right:0}}
+.st:last-child{border-bottom:0}
+.st .sn{font-family:var(--mono);font-size:10.5px;letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:11px;display:flex;align-items:center;gap:7px}
+.st .sn i{width:7px;height:8px;background:currentColor;clip-path:polygon(50% 0,100% 25%,100% 75%,50% 100%,0 75%,0 25%);display:block;flex-shrink:0}
+.st h4{font-size:15.5px;margin-bottom:7px}
+.st p{font-size:13.5px;color:var(--fg-2);line-height:1.55}
+.st ul{margin-top:11px;list-style:none}
+.st li{font-family:var(--mono);font-size:11.5px;color:var(--fg-3);padding:4px 0 4px 15px;position:relative;line-height:1.5}
+.st li::before{content:"";position:absolute;left:0;top:11px;width:5px;height:5px;border-radius:50%;background:var(--accent);opacity:.55}
+.rail-f{padding:15px 18px;border-top:1px solid var(--border);background:var(--surface-2);font-size:13.5px;color:var(--fg-2);line-height:1.55}
+.alt .rail-f{background:var(--surface)}
+.rail-f b{color:var(--fg);font-weight:600}
+
+/* signature demo */
+.sig{margin-top:30px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden;background:var(--surface);display:grid}
+.alt .sig{background:var(--bg)}
+@media(min-width:900px){.sig{grid-template-columns:.85fr 1.15fr}}
+.sig-vis{padding:26px 20px 20px;display:flex;flex-direction:column;align-items:center;justify-content:center;border-bottom:1px solid var(--border);background:var(--surface-2)}
+.alt .sig-vis{background:var(--surface)}
+@media(min-width:900px){.sig-vis{border-bottom:0;border-right:1px solid var(--border)}}
+.sig-vis svg{width:100%;max-width:250px;height:auto}
+.tg{display:inline-flex;gap:6px;padding:4px;border:1px solid var(--border-2);border-radius:100px;background:var(--bg);margin-top:16px}
+.tg button{position:relative;font-family:var(--mono);font-size:11.5px;letter-spacing:.04em;padding:9px 18px;background:var(--surface-2);color:var(--fg-2);border:1px solid var(--border-2);border-radius:100px;cursor:pointer;transition:background .18s,color .18s,border-color .18s,transform .12s,box-shadow .18s;min-height:38px;white-space:nowrap}
+.tg button:hover{background:#20293780;color:var(--fg);border-color:rgba(255,255,255,.30)}
+.tg button:active{transform:scale(.97)}
+.tg button:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.tg button.on{background:var(--accent);color:#04222A;font-weight:500;border-color:var(--accent);box-shadow:0 0 0 3px rgba(34,211,238,.16)}
+.tg button.on:hover{background:var(--accent);color:#04222A;border-color:var(--accent)}
+.tg button.on.f{background:var(--bad);color:#2A1206;border-color:var(--bad);box-shadow:0 0 0 3px rgba(242,118,75,.16)}
+.tg button.on.f:hover{background:var(--bad);color:#2A1206;border-color:var(--bad)}
+.tg button:not(.on)::after{content:"";position:absolute;left:50%;transform:translateX(-50%);bottom:5px;width:14px;height:1px;background:currentColor;opacity:.35;transition:opacity .18s,width .18s}
+.tg button:not(.on):hover::after{opacity:.75;width:20px}
+.tg-hint{font-family:var(--mono);font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--fg-3);margin-top:9px}
+@media(hover:none){.tg button:not(.on)::after{opacity:.6}}
+.sig-txt{padding:24px 22px}
+.sig-txt h4{font-size:16px;margin-bottom:9px}
+.sig-txt p{font-size:14.5px;color:var(--fg-2);line-height:1.6;margin-bottom:12px}
+.sig-txt .rd{font-family:var(--mono);font-size:12px;color:var(--fg-3);padding-top:12px;border-top:1px solid var(--border);line-height:1.75}
+.sig-txt .rd b{color:var(--fg-2);font-weight:400}
+#sigVerdict{font-family:var(--mono);font-size:11.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ok);display:inline-flex;align-items:center;gap:7px}
+#sigVerdict.f{color:var(--bad)}
+#sigVerdict::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor}
+
+/* applied table */
+.ap{margin-top:26px;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.ap-row{display:grid;gap:6px;padding:20px;border-bottom:1px solid var(--border);background:var(--surface);transition:background .2s}
+.alt .ap-row{background:var(--bg)}
+.ap-row:last-child{border-bottom:0}
+.ap-row:hover{background:var(--surface-2)}
+@media(min-width:900px){.ap-row{grid-template-columns:.72fr 1.4fr 1.1fr;gap:26px;align-items:center;padding:19px 24px}}
+.ap-sector{font-family:var(--disp);font-size:15.5px;font-weight:600;letter-spacing:-.02em;color:var(--fg)}
+.ap-sector small{display:block;font-family:var(--mono);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--fg-3);font-weight:400;margin-top:4px}
+.ap-risk{font-size:14px;color:var(--fg-2);line-height:1.5}
+.ap-auth{font-size:13.5px;color:var(--fg);line-height:1.5;padding-top:8px;border-top:1px solid var(--border)}
+@media(min-width:900px){.ap-auth{padding-top:0;border-top:0;padding-left:22px;border-left:1px solid var(--border)}}
+.ap-auth b{display:block;font-family:var(--mono);font-size:10px;letter-spacing:.11em;text-transform:uppercase;color:var(--accent);margin-bottom:5px;font-weight:500}
+.ap-head{display:none}
+@media(min-width:900px){.ap-head{display:grid;grid-template-columns:.72fr 1.4fr 1.1fr;gap:26px;padding:11px 24px;background:var(--surface-2);border-bottom:1px solid var(--border)}
+.alt .ap-head{background:var(--surface)}
+.ap-head span{font-family:var(--mono);font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--fg-3)}}
+.sub-h{margin-top:44px;padding-top:34px;border-top:1px solid var(--border)}
+
+.api{display:grid;gap:14px;margin-top:30px}
+@media(min-width:980px){.api{grid-template-columns:1.02fr .98fr;gap:18px;align-items:start}}
+.code{background:#070A0E;border:1px solid var(--border);border-radius:var(--r);overflow:hidden}
+.code-t{display:flex;align-items:center;gap:8px;padding:11px 14px;border-bottom:1px solid var(--border)}
+.code-t i{width:8px;height:8px;border-radius:50%;flex-shrink:0;display:block}
+.code-t span{font-family:var(--mono);font-size:11px;color:var(--fg-3);margin-left:5px}
+.code pre{margin:0;padding:16px 15px;overflow-x:auto;font-family:var(--mono);font-size:11.5px;line-height:1.75;color:#C3D0DC;-webkit-overflow-scrolling:touch}
+@media(min-width:768px){.code pre{font-size:12.5px;padding:18px}}
+.code .k{color:#22D3EE}.code .s{color:#FBBF24}.code .c{color:#5A6875}.code .n{color:#93C5FD}
+.chips{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.chips span{font-family:var(--mono);font-size:11.5px;color:var(--fg-2);border:1px solid var(--border);padding:6px 11px;border-radius:100px}
+
+.co{display:grid;gap:24px;margin-top:30px}
+@media(min-width:900px){.co{grid-template-columns:1.15fr .85fr;gap:48px;align-items:start}}
+.co p{font-size:16px;color:var(--fg-2);line-height:1.66;margin-bottom:14px}
+.co p b{color:var(--fg);font-weight:600}
+.co-side p{font-size:14.5px;line-height:1.6;margin-bottom:16px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.co-side p:last-child{border-bottom:0;margin-bottom:0;padding-bottom:0}
+.co-side b{display:block;color:var(--fg);font-weight:600;font-size:13px;margin-bottom:5px}
+
+.cta{border-top:1px solid var(--border);position:relative;overflow:hidden}
+.cta::before{content:"";position:absolute;top:-200px;left:50%;transform:translateX(-50%);width:740px;height:440px;background:radial-gradient(circle,rgba(34,211,238,.09),transparent 66%);pointer-events:none}
+.cg{display:grid;gap:28px;position:relative;z-index:2}
+@media(min-width:900px){.cg{grid-template-columns:1fr 1fr;gap:48px;align-items:start}}
+.f .r{margin-bottom:14px}
+.f .two{display:grid;gap:14px}
+@media(min-width:560px){.f .two{grid-template-columns:1fr 1fr}}
+.f label{display:block;font-size:13px;font-weight:500;color:var(--fg-2);margin-bottom:6px}
+.f input,.f select,.f textarea{width:100%;background:var(--surface);border:1px solid var(--border);border-radius:var(--r-sm);padding:12px 14px;color:var(--fg);font-family:var(--sans);font-size:16px;outline:none;min-height:46px;transition:border-color .2s}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:var(--accent)}
+.f textarea{min-height:76px;resize:vertical}
+.f .btn{margin-top:4px;width:100%}
+@media(min-width:560px){.f .btn{width:auto}}
+.done{display:none;background:var(--surface);border:1px solid var(--ok);border-radius:var(--r);padding:22px 20px}
+.done .h{font-family:var(--mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--ok);margin-bottom:8px}
+.done p{color:var(--fg-2);font-size:15px}
+.li{padding:12px 0;border-bottom:1px solid var(--border);font-size:14.5px;color:var(--fg-2)}
+.li:last-child{border-bottom:0}
+.li b{color:var(--fg);font-weight:600;display:block;margin-bottom:2px;font-family:var(--disp);letter-spacing:-.02em}
+
+footer{border-top:1px solid var(--border);padding:48px 0 24px;background:var(--surface)}
+.f-top{display:grid;gap:34px}
+@media(min-width:900px){.f-top{grid-template-columns:1.15fr 1.85fr;gap:56px}}
+.f-brand .fl{display:flex;align-items:center;gap:10px;font-family:var(--disp);font-size:17px;font-weight:600;letter-spacing:-.03em;color:var(--fg)}
+.f-brand .fl svg{color:var(--accent)}
+.f-tag{margin-top:13px;font-size:14px;color:var(--fg-2);line-height:1.6;max-width:40ch}
+.f-badges{margin-top:16px;display:flex;flex-wrap:wrap;gap:8px}
+.f-badges span{display:inline-flex;align-items:center;gap:7px;font-family:var(--mono);font-size:11px;color:var(--fg-2);border:1px solid var(--border);border-radius:100px;padding:6px 12px}
+.sdot{width:6px;height:6px;border-radius:50%;background:var(--ok);box-shadow:0 0 7px rgba(52,211,153,.8);flex-shrink:0}
+.adot{width:6px;height:6px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.f-social{margin-top:18px;display:flex;gap:10px}
+.f-social a{width:36px;height:36px;border:1px solid var(--border);border-radius:var(--r-sm);display:flex;align-items:center;justify-content:center;color:var(--fg-2);transition:all .2s}
+.f-social a:hover{border-color:var(--accent);color:var(--accent)}
+.f-nav{display:grid;gap:26px}
+@media(min-width:560px){.f-nav{grid-template-columns:repeat(3,1fr);gap:22px}}
+.f-nav h5{font-family:var(--mono);font-size:10.5px;letter-spacing:.13em;text-transform:uppercase;color:var(--fg-3);font-weight:500;margin-bottom:13px}
+.f-nav a{display:block;font-size:14px;color:var(--fg-2);padding:5px 0;transition:color .2s}
+.f-nav a:hover{color:var(--accent)}
+.f-bot{margin-top:36px;padding-top:20px;border-top:1px solid var(--border);display:flex;flex-direction:column;gap:12px;font-size:12.5px;color:var(--fg-3)}
+@media(min-width:700px){.f-bot{flex-direction:row;justify-content:space-between;align-items:center}}
+.f-legal{display:flex;gap:20px;flex-wrap:wrap}
+.f-legal a{color:var(--fg-3);transition:color .2s}
+.f-legal a:hover{color:var(--fg-2)}
+
+/* ═══════════════════════════════════════════════
+   MOTION SYSTEM
+   Techniques adapted from Magic UI / Aceternity
+   (border-beam, shimmer, aurora, scan) — implemented
+   in pure CSS. Zero JS bundle, GPU-composited,
+   all disabled under prefers-reduced-motion.
+   Enterprise principle: motion signals liveness and
+   state. It never decorates.
+═══════════════════════════════════════════════ */
+
+/* 1 — AURORA: slow colour drift behind the hero */
+@keyframes aurora{
+  0%{transform:translate3d(0,0,0) scale(1);opacity:.85}
+  33%{transform:translate3d(-4%,3%,0) scale(1.08);opacity:1}
+  66%{transform:translate3d(3%,-2%,0) scale(1.03);opacity:.9}
+  100%{transform:translate3d(0,0,0) scale(1);opacity:.85}
+}
+.hero::before{animation:aurora 22s ease-in-out infinite;will-change:transform,opacity}
+
+/* 2 — GRID DRIFT: the field breathes rather than sits */
+@keyframes gridDrift{from{background-position:0 0,0 0}to{background-position:56px 56px,56px 56px}}
+.hero::after{animation:gridDrift 26s linear infinite}
+
+/* 3 — SCANLINE: a sweep that reads as continuous monitoring */
+.scanline{position:absolute;left:0;right:0;top:0;height:1px;z-index:1;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(34,211,238,.45),transparent);
+  animation:scan 7s linear infinite}
+@keyframes scan{0%{top:-2%;opacity:0}8%{opacity:1}92%{opacity:1}100%{top:102%;opacity:0}}
+
+/* 4 — BORDER BEAM: light travelling the card edge (Magic UI signature) */
+.card{position:relative}
+.card::before{content:"";position:absolute;inset:-1px;border-radius:inherit;padding:1px;z-index:3;
+  background:conic-gradient(from var(--beam-a,0deg),transparent 0deg,transparent 300deg,rgba(34,211,238,.9) 340deg,rgba(52,211,153,.7) 352deg,transparent 360deg);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);
+  -webkit-mask-composite:xor;mask-composite:exclude;
+  animation:beam 5s linear infinite;pointer-events:none}
+@property --beam-a{syntax:'<angle>';initial-value:0deg;inherits:false}
+@keyframes beam{to{--beam-a:360deg}}
+
+/* 5 — LIVE DOT: pulse plus expanding ring */
+.card-top .d{position:relative;animation:dotPulse 2.6s ease-in-out infinite}
+.card-top .d::after{content:"";position:absolute;inset:0;border-radius:50%;
+  border:1px solid var(--ok);animation:ring 2.6s ease-out infinite}
+@keyframes dotPulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.72;transform:scale(.86)}}
+@keyframes ring{0%{transform:scale(1);opacity:.7}100%{transform:scale(3.4);opacity:0}}
+
+/* 6 — DATA SHIMMER: rows settle in sequence, as a live response would */
+.card .row{opacity:0;animation:rowIn .5s cubic-bezier(.2,.7,.2,1) forwards}
+.card .row:nth-child(1){animation-delay:.30s}
+.card .row:nth-child(2){animation-delay:.46s}
+.card .row:nth-child(3){animation-delay:.62s}
+.card .row:nth-child(4){animation-delay:.78s}
+.card .row:nth-child(5){animation-delay:.94s}
+@keyframes rowIn{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
+.card-foot{opacity:0;animation:rowIn .5s cubic-bezier(.2,.7,.2,1) .5s forwards;position:relative;overflow:hidden}
+.card-foot::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(105deg,transparent 38%,rgba(52,211,153,.13) 50%,transparent 62%);
+  transform:translateX(-100%);animation:shimmer 4.5s ease-in-out 1.6s infinite}
+@keyframes shimmer{0%{transform:translateX(-100%)}55%,100%{transform:translateX(100%)}}
+
+/* 7 — STATUS DOT in footer badge */
+.sdot{animation:dotPulse 2.6s ease-in-out infinite}
+
+/* 8 — RAIL FLOW: a pulse travelling capture → custody → auth → delivery */
+.rail-g{position:relative}
+.rail-g::after{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;z-index:2;
+  background:linear-gradient(180deg,transparent,rgba(34,211,238,.55),transparent);
+  animation:railFlowV 6s ease-in-out infinite;pointer-events:none}
+@keyframes railFlowV{0%{transform:translateY(-100%);opacity:0}12%{opacity:1}88%{opacity:1}100%{transform:translateY(100%);opacity:0}}
+@media(min-width:960px){
+  .rail-g::after{left:0;top:0;bottom:auto;width:2px;height:100%;
+    animation:railFlowH 6s ease-in-out infinite}
+  @keyframes railFlowH{0%{transform:translateX(0);opacity:0}10%{opacity:1}90%{opacity:1}100%{transform:translateX(calc(100vw - 2px));opacity:0}}
+}
+.rail{position:relative;overflow:hidden}
+
+/* 9 — CTA hover lift with glow */
+.btn-p{position:relative;overflow:hidden}
+.btn-p::after{content:"";position:absolute;inset:0;
+  background:linear-gradient(105deg,transparent 40%,rgba(255,255,255,.28) 50%,transparent 60%);
+  transform:translateX(-100%);transition:transform .55s ease}
+.btn-p:hover::after{transform:translateX(100%)}
+.btn-p:hover{box-shadow:0 6px 24px rgba(34,211,238,.28)}
+
+/* 10 — signature breathes when idle */
+#sigSvg{filter:drop-shadow(0 0 14px rgba(34,211,238,.10))}
+
+/* ── reduced motion: everything stops, nothing disappears ── */
+@media(prefers-reduced-motion:reduce){
+  .hero::before,.hero::after,.scanline,.card::before,.card-top .d,.card-top .d::after,
+  .sdot,.rail-g::after,.card-foot::after{animation:none!important}
+  .scanline,.rail-g::after{display:none}
+  .card .row,.card-foot{opacity:1!important;animation:none!important}
+}
+
+/* compliance badges */
+.pv-badges{display:flex;gap:14px;flex-wrap:wrap;margin-top:22px}
+.pv-badge{position:relative;display:inline-flex;align-items:center;gap:10px;
+  padding:11px 18px 11px 14px;border:1px solid rgba(194,208,220,.28);border-radius:10px;
+  color:#C3D0DC;background:rgba(255,255,255,.02);cursor:default;outline:none;
+  transition:border-color .18s ease,color .18s ease,background .18s ease}
+.pv-badge:hover,.pv-badge:focus-visible{border-color:#22D3EE;color:#22D3EE;background:rgba(34,211,238,.06)}
+.pv-badge:focus-visible{box-shadow:0 0 0 3px rgba(34,211,238,.25)}
+.pv-badge svg{width:26px;height:26px;flex:none}
+.pv-badge-label{font-size:13.5px;font-weight:600;letter-spacing:.09em;text-transform:uppercase;white-space:nowrap}
+.pv-tip{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%) translateY(4px);
+  background:#04222A;color:#F2F5F8;border:1px solid rgba(34,211,238,.4);
+  padding:7px 12px;border-radius:7px;font-size:12.5px;font-weight:500;letter-spacing:.01em;
+  white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .18s ease,transform .18s ease;z-index:20}
+.pv-tip::after{content:"";position:absolute;top:100%;left:50%;transform:translateX(-50%);
+  border:5px solid transparent;border-top-color:#04222A}
+.pv-badge:hover .pv-tip,.pv-badge:focus-visible .pv-tip{opacity:1;transform:translateX(-50%) translateY(0)}
+@media(hover:none){.pv-tip{position:static;transform:none;opacity:1;background:none;border:0;padding:0 0 0 6px;
+  color:#22D3EE;font-size:12px}.pv-tip::after{display:none}}
+</style>
+<!-- Structured data for search engines and AI answer engines. NOTE: the two sameAs URLs are placeholders — swap them for Proxyview's real LinkedIn/Crunchbase URLs, or delete any profile that doesn't exist yet. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "Organization",
+      "@id": "https://www.getproxyview.com/#organization",
+      "name": "Proxyview",
+      "legalName": "Luca Africa Inc.",
+      "url": "https://www.getproxyview.com/",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://www.getproxyview.com/pv-us-icon-512.png",
+        "width": 512,
+        "height": 512
+      },
+      "description": "Proxyview is building the trust infrastructure that enables the AI era to reason about the physical world with confidence. It is creating a new category — Operational Reality Authentication — which authenticates whether a claimed physical-world event actually occurred as represented. Not documents, not reports, not photographs: the event itself.",
+      "founder": {
+        "@type": "Person",
+        "name": "Olukunle Odebunmi"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "email": "hello@getproxyview.com",
+        "contactType": "sales"
+      },
+      "sameAs": [
+        "https://www.linkedin.com/company/proxyview",
+        "https://www.crunchbase.com/organization/proxyview"
+      ]
+    },
+    {
+      "@type": "WebSite",
+      "@id": "https://www.getproxyview.com/#website",
+      "url": "https://www.getproxyview.com/",
+      "name": "Proxyview",
+      "description": "Authentication for the physical world. Proxyview authenticates whether a claimed physical-world event actually occurred as represented, so people, enterprises, regulators and AI systems can make trusted decisions about the physical world.",
+      "publisher": { "@id": "https://www.getproxyview.com/#organization" },
+      "inLanguage": "en"
+    },
+    {
+      "@type": "SoftwareApplication",
+      "@id": "https://www.getproxyview.com/#product",
+      "name": "Proxyview",
+      "applicationCategory": "BusinessApplication",
+      "operatingSystem": "Web-based (REST API, webhooks, SDKs)",
+      "description": "An authentication and governance rail implementing Operational Reality Authentication. It verifies whether a claimed physical-world event actually occurred as represented — milestones, deliveries, losses — and returns a calibrated confidence score, a sealed chain of custody, and an examinable record before any system acts on the claim.",
+      "provider": { "@id": "https://www.getproxyview.com/#organization" },
+      "audience": {
+        "@type": "Audience",
+        "audienceType": "Institutions and automated systems that act on claims about the physical world — lenders, insurers, asset platforms, trade, and autonomous operations"
+      }
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<nav id="nav">
+  <div class="nav-in">
+    <a href="#top" class="brand" aria-label="Proxyview">
+      <svg width="24" height="24" viewBox="0 0 40 40" aria-hidden="true" fill="none">
+        <polygon points="20,3 34,11.5 34,28.5 20,37 6,28.5 6,11.5" stroke="currentColor" stroke-width="1.7"/>
+        <polygon points="20,10.5 27.5,15 27.5,25 20,29.5 12.5,25 12.5,15" stroke="currentColor" stroke-width="1.3" fill="currentColor" fill-opacity=".16"/>
+        <circle cx="20" cy="20" r="2.4" fill="currentColor"/>
+      </svg>
+      Proxyview
+    </a>
+    <div class="nav-links">
+      <a href="#system">System</a>
+      <a href="#applied">Where it applies</a>
+      <a href="#platform">Platform</a>
+      <a href="#deploy">Deployment</a>
+      <a href="#company">Company</a>
+    </div>
+    <div class="nav-act">
+      <a href="#contact" class="btn btn-s">Talk to sales</a>
+      <a href="#contact" class="btn btn-p">Get access</a>
+      <button class="burger" id="bg" aria-label="Menu" aria-expanded="false"><span></span></button>
+    </div>
+  </div>
+  <div id="mob">
+    <a href="#system">System</a><a href="#applied">Where it applies</a><a href="#platform">Platform</a>
+    <a href="#deploy">Deployment</a><a href="#security">Security</a><a href="#company">Company</a><a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <div class="scanline" aria-hidden="true"></div>
+  <div class="c">
+    <div class="hero-grid">
+      <div class="hero-in">
+        <span class="eyebrow">Operational Reality Authentication</span>
+        <h1>Authentication for the physical world.</h1>
+        <p class="sub">AI-assisted decisions are only as reliable as the evidence they reason about. Proxyview authenticates physical-world evidence — not just whether the file is genuine, but whether the event it depicts actually occurred.</p>
+        <div class="hero-cta">
+          <a href="#contact" class="btn btn-p">Request enterprise access</a>
+          <a href="#system" class="btn btn-s">See the system</a>
+        </div>
+        <div class="hero-trust">
+          <div><b>Architecture</b>Model · corpus · capture standard</div>
+          <div><b>Interface</b>REST API · webhooks · SDKs</div>
+          <div><b>Assurance</b>Sealed, examinable record</div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-top"><span class="d"></span><span class="t">POST /v1/authentications</span><span class="i">pv_a8f2c1d9</span></div>
+        <div>
+          <div class="row"><span class="k">claim</span><span class="v">structure.milestone.complete</span></div>
+          <div class="row"><span class="k">authenticated</span><span class="st">True</span></div>
+          <div class="row"><span class="k">confidence</span><span class="v">0.96 · calibrated</span></div>
+          <div class="row"><span class="k">custody</span><span class="st">Sealed</span></div>
+          <div class="row"><span class="k">acting_on</span><span class="v">$412,000</span></div>
+        </div>
+        <div class="card-foot"><span class="vd">✓ Claim authenticated</span><span class="ms">1.4s</span></div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<section class="sec alt">
+  <div class="c">
+    <span class="eyebrow rev">Why now</span>
+    <h2 class="h-sec rev">Evidence stopped being proof.</h2>
+    <p class="p-sec rev">Three changes ended the assumption that a record of something is proof it happened.</p>
+    <div class="g g-3">
+      <div class="b rev"><div class="lb">One</div><h3>Fabrication became free</h3><p>A convincing record of an event that never occurred now takes seconds and costs nothing.</p></div>
+      <div class="b rev"><div class="lb">Two</div><h3>Machines began deciding</h3><p>Automated systems release funds and settle claims faster than any review can follow.</p></div>
+      <div class="b rev"><div class="lb">Three</div><h3>Machines began reporting</h3><p>Drones, robotics and agents now produce their own account of the world for other systems to act on.</p></div>
+    </div>
+    <div class="note rev">
+      <h4>The failure nobody catches</h4>
+      <p>Checking whether a photograph was edited is not the same as checking whether it shows what it claims to show. A real, unedited photograph — of a different site, a different year, or someone else's damaged property — passes every integrity check available today, because the image itself is completely genuine. <b style="color:var(--fg)">The picture is true. The claim attached to it is not.</b> That is the failure that costs institutions money, and nothing on the market is built to catch it.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="system">
+  <div class="c">
+    <span class="eyebrow rev">The system</span>
+    <h2 class="h-sec rev">A governance rail from capture to your platform.</h2>
+    <p class="p-sec rev">Evidence is governed the moment it is created, carried through an unbroken chain of custody, authenticated against the physical record, and delivered sealed into the system where the decision is made.</p>
+    <div class="rail rev">
+      <div class="rail-h"><span>Governance rail</span></div>
+      <div class="rail-g">
+        <div class="st">
+          <div class="sn"><i></i>Capture</div>
+          <h4>Mobile capture app</h4>
+          <p>Field operators, your own vendors, or the counterparty capture through a governed session.</p>
+          <ul><li>Live capture only</li><li>Gallery disabled</li><li>GPS boundary enforced</li><li>Device integrity checked</li></ul>
+        </div>
+        <div class="st">
+          <div class="sn"><i></i>Custody</div>
+          <h4>Unbroken chain</h4>
+          <p>Every submission carries identity, location, time and integrity from capture to delivery.</p>
+          <ul><li>Operator identity verified</li><li>Coordinates bound</li><li>Timestamp sealed</li><li>Tamper-evident fingerprint</li></ul>
+        </div>
+        <div class="st">
+          <div class="sn"><i></i>Authentication</div>
+          <h4>Model and corpus</h4>
+          <p>The claim is assessed against independent records of the world at that place and moment.</p>
+          <ul><li>Trained authentication model</li><li>Global reference corpus</li><li>Adversarial robustness</li><li>Calibrated confidence</li></ul>
+        </div>
+        <div class="st">
+          <div class="sn"><i></i>Delivery</div>
+          <h4>Enterprise platform &amp; API</h4>
+          <p>Results land in the enterprise portal and in your own system as a sealed record.</p>
+          <ul><li>Portfolio portal</li><li>Vendor panel</li><li>Webhook to your system</li><li>Examinable audit record</li></ul>
+        </div>
+      </div>
+      <div class="rail-f"><b>The rail is the product.</b> Capture, custody, authentication and delivery operate as one governed path — so no submission enters a decision without a record of where it came from and whether it holds.</div>
+    </div>
+
+    <div class="sig rev">
+      <div class="sig-vis">
+        <svg id="sigSvg" viewBox="0 0 260 260" role="img" aria-label="Authentication signature — coherent when authentic, collapsed when fabricated"></svg>
+        <div class="tg" role="group" aria-label="Signature state">
+          <button id="tA" class="on" type="button" aria-pressed="true" onclick="setSig('a')">Authentic</button>
+          <button id="tF" type="button" aria-pressed="false" onclick="setSig('f')">Fabricated</button>
+        </div>
+        <div class="tg-hint">Tap to compare</div>
+      </div>
+      <div class="sig-txt">
+        <h4>What authentication looks like</h4>
+        <p>Every submission produces a signature — a shape formed by how well its independent characteristics agree with one another and with the wider record of that place and time.</p>
+        <p>An authentic event produces a full, regular form: everything corroborates everything else. A fabricated or misattributed one cannot hold that shape. Something fails to agree, and the form collapses.</p>
+        <div class="rd">
+          <b>Result</b> <span id="sigVerdict">Authenticated · 0.96 confidence</span><br>
+          <b>Reading</b> <span id="sigRead" style="color:var(--fg-2)">All characteristics corroborate.</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="note rev">
+      <h4>Why this is a machine-learning problem</h4>
+      <p>Authenticating a claim about the physical world means reasoning across noisy, partially missing signals against an adversary constructing evidence to look genuine — large-scale multimodal modelling, adversarial robustness, probability calibration, and a reference corpus maintained at global scale.</p>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="applied">
+  <div class="c">
+    <span class="eyebrow rev">Where it applies</span>
+    <h2 class="h-sec rev">One primitive. A different decision in every sector.</h2>
+    <div class="ap rev">
+      <div class="ap-head"><span>Sector</span><span>The decision at risk</span><span>What Proxyview authenticates</span></div>
+      <div class="ap-row">
+        <div class="ap-sector">Construction finance<small>Draw disbursement</small></div>
+        <div class="ap-risk">Funds release on a claim that a stage is complete. A record from a prior project or adjacent site passes review.</div>
+        <div class="ap-auth"><b>Authenticated</b>That the work occurred, at that site, in that period.</div>
+      </div>
+      <div class="ap-row">
+        <div class="ap-sector">Insurance<small>Claims adjudication</small></div>
+        <div class="ap-risk">Straight-through processing settles on evidence of damage belonging to a different asset, event or year.</div>
+        <div class="ap-auth"><b>Authenticated</b>That the loss occurred to the insured asset, in the covered period.</div>
+      </div>
+      <div class="ap-row">
+        <div class="ap-sector">Commercial lending<small>Collateral monitoring</small></div>
+        <div class="ap-risk">Credit systems assume pledged assets exist as represented, confirmed by nothing independent until default.</div>
+        <div class="ap-auth"><b>Authenticated</b>That the asset exists, where claimed, in the condition represented.</div>
+      </div>
+      <div class="ap-row">
+        <div class="ap-sector">Real-world assets<small>Tokenized instruments</small></div>
+        <div class="ap-risk">A digital instrument is only worth the asset behind it, and nothing continuously confirms it is there.</div>
+        <div class="ap-auth"><b>Authenticated</b>Ongoing confirmation of the asset backing the instrument.</div>
+      </div>
+      <div class="ap-row">
+        <div class="ap-sector">Logistics &amp; trade<small>Payment on delivery</small></div>
+        <div class="ap-risk">Terms execute on confirmation from a counterparty with an interest in the outcome.</div>
+        <div class="ap-auth"><b>Authenticated</b>That goods arrived, where and when claimed, in the condition recorded.</div>
+      </div>
+      <div class="ap-row">
+        <div class="ap-sector">Autonomous systems<small>Machine-generated claims</small></div>
+        <div class="ap-risk">Robotics and agents report on the world to systems that act automatically, with nothing confirming the account.</div>
+        <div class="ap-auth"><b>Authenticated</b>The claim a machine makes, at machine speed.</div>
+      </div>
+    </div>
+
+    <div class="sub-h">
+      <span class="eyebrow rev">For the institution</span>
+      <h2 class="h-sec rev">What changes on your side of the transaction.</h2>
+      <div class="g g-4">
+        <div class="b rev"><div class="lb">Loss</div><h4>Exposure removed before disbursement</h4><p>Fraudulent claims are caught while funds are still in your control, not recovered through workout.</p></div>
+        <div class="b rev"><div class="lb">Examination</div><h4>Decisions you can defend</h4><p>A sealed record of what was relied on and why it was credible — what an examiner asks for.</p></div>
+        <div class="b rev"><div class="lb">Cycle time</div><h4>Days returned to the business</h4><p>What took a scheduled visit and manual review resolves inside the workflow, without added headcount.</p></div>
+        <div class="b rev"><div class="lb">Portfolio</div><h4>Visibility across the book</h4><p>Which counterparties, regions and vendors consistently produce evidence that holds.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="platform">
+  <div class="c">
+    <span class="eyebrow rev">Platform</span>
+    <h2 class="h-sec rev">Embedded, not bolted on.</h2>
+    <p class="p-sec rev">Authentication becomes a call inside loan origination, claims adjudication or compliance review — not a portal your team has to remember to open.</p>
+    <div class="api">
+      <div class="code rev">
+        <div class="code-t"><i style="background:#FB7185"></i><i style="background:#FBBF24"></i><i style="background:#34D399"></i><span>authenticate.ts</span></div>
+<pre><span class="k">const</span> result = <span class="k">await</span> proxyview.<span class="n">authenticate</span>({
+  claim: <span class="s">"structure.milestone.complete"</span>,
+  location: { lat: <span class="s">30.2672</span>, lng: <span class="s">-97.7431</span> },
+  window: <span class="s">"2026-06-14T14:00Z/PT2H"</span>,
+  evidence: [ capture_id ],
+  reference: <span class="s">"loan_88213"</span>
+})
+
+<span class="c">// webhook — authentication.completed</span>
+{
+  <span class="n">"authenticated"</span>: <span class="k">true</span>,
+  <span class="n">"confidence"</span>: <span class="s">0.96</span>,
+  <span class="n">"record_url"</span>: <span class="s">"https://…/sealed"</span>,
+  <span class="n">"audit_chain"</span>: <span class="s">"pv_chain_b7d3f1"</span>
+}</pre>
+      </div>
+      <div>
+        <div class="g" style="margin-top:0;gap:13px">
+          <div class="b rev"><h4>Runs inside your workflow</h4><p>Triggered by your origination or claims system. Results return to the same record.</p></div>
+          <div class="b rev"><h4>Event-driven</h4><p>Webhooks for state changes and completion. Scales with transaction flow, not headcount.</p></div>
+          <div class="b rev"><h4>Sealed and auditable</h4><p>Every result carries a tamper-evident record — defensible to an auditor, regulator or court.</p></div>
+        </div>
+        <div class="chips"><span>Python</span><span>JavaScript</span><span>TypeScript</span><span>Java</span><span>Go</span><span>Swift</span><span>Kotlin</span><span>C#</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="deploy">
+  <div class="c">
+    <span class="eyebrow rev">Deployment</span>
+    <h2 class="h-sec rev">Three ways onto the rail.</h2>
+    <p class="p-sec rev">Same authentication, same standard. Existing vendor and field relationships stay as they are.</p>
+    <div class="g g-3">
+      <div class="b rev"><div class="lb">Option 01</div><h3>Governed network</h3><p>Your existing vendors submit through the rail. You keep every relationship; every submission is authenticated.</p><div class="out"><b>Best for</b>Institutional scale and ongoing governance.</div></div>
+      <div class="b rev"><div class="lb">Option 02</div><h3>Counterparty capture</h3><p>Capture extends to the borrower or claimant through a single-use governed session. No dispatch required.</p><div class="out"><b>Best for</b>High-volume, distributed portfolios.</div></div>
+      <div class="b rev"><div class="lb">Option 03</div><h3>Managed</h3><p>Proxyview operates the full cycle, capture through authenticated record, so you can evaluate against real files before integrating.</p><div class="out"><b>Best for</b>Evaluation and complex escalations.</div></div>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="security">
+  <div class="c">
+    <span class="eyebrow rev">Security &amp; assurance</span>
+    <h2 class="h-sec rev">Built to the standard regulated institutions require.</h2>
+    <div class="g g-4">
+      <div class="b rev"><div class="big">&lt;4h</div><h4>Standard turnaround</h4><p>Request to sealed record.</p></div>
+      <div class="b rev"><div class="big">99.9%</div><h4>Availability target</h4><p>Redundant infrastructure.</p></div>
+      <div class="b rev"><div class="big">3</div><h4>Operating regions</h4><p>Americas, EMEA, APAC.</p></div>
+      <div class="b rev"><div class="big">∞</div><h4>Elastic throughput</h4><p>Scales with transaction volume.</p></div>
+    </div>
+    <div class="note rev"><h4>Controls</h4><p>Live capture enforced on device · coordinates cryptographically bound with spoofing detection · tamper-evident fingerprint at submission · short-lived scoped retrieval tokens · data residency options for regulated deployments · SOC 2 programme in progress.</p></div>
+
+    <div class="pv-badges" role="list">
+      <div class="pv-badge" role="listitem" tabindex="0" aria-describedby="tip-soc">
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <path d="M20 3.5 33 8.6v10.2c0 7.9-5.3 14.4-13 17.7C12.3 33.2 7 26.7 7 18.8V8.6z"
+                fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/>
+          <path d="M14.4 20.2l4 4 7.4-8.4" fill="none" stroke="currentColor"
+                stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <span class="pv-badge-label">SOC&nbsp;2</span>
+        <span class="pv-tip" id="tip-soc" role="tooltip">SOC&nbsp;2 in progress</span>
+      </div>
+
+      <div class="pv-badge" role="listitem" tabindex="0" aria-describedby="tip-gdpr">
+        <svg viewBox="0 0 40 40" aria-hidden="true" focusable="false">
+          <circle cx="20" cy="20" r="14.2" fill="none" stroke="currentColor" stroke-width="1.8"/>
+          <g fill="currentColor">
+            <circle cx="20" cy="8.4" r="1.5"/><circle cx="25.8" cy="10" r="1.5"/>
+            <circle cx="30" cy="14.2" r="1.5"/><circle cx="31.6" cy="20" r="1.5"/>
+            <circle cx="30" cy="25.8" r="1.5"/><circle cx="25.8" cy="30" r="1.5"/>
+            <circle cx="20" cy="31.6" r="1.5"/><circle cx="14.2" cy="30" r="1.5"/>
+            <circle cx="10" cy="25.8" r="1.5"/><circle cx="8.4" cy="20" r="1.5"/>
+            <circle cx="10" cy="14.2" r="1.5"/><circle cx="14.2" cy="10" r="1.5"/>
+          </g>
+          <rect x="15.4" y="18.6" width="9.2" height="7.4" rx="1.2"
+                fill="none" stroke="currentColor" stroke-width="1.7"/>
+          <path d="M17.4 18.6v-2.4a2.6 2.6 0 0 1 5.2 0v2.4" fill="none"
+                stroke="currentColor" stroke-width="1.7"/>
+        </svg>
+        <span class="pv-badge-label">GDPR</span>
+        <span class="pv-tip" id="tip-gdpr" role="tooltip">DPA ready</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec alt" id="company">
+  <div class="c">
+    <span class="eyebrow rev">Company</span>
+    <h2 class="h-sec rev">We build the system institutions use to know what is real.</h2>
+    <div class="co">
+      <div class="rev">
+        <p>Proxyview exists because <b>economic systems fail when the records they depend on cannot be trusted.</b> That has been true wherever capital meets physical activity — energy assets that could not be financed without credible operational data, lending markets where money would not move because nothing confirmed conditions on the ground.</p>
+        <p>The problem has changed character. Fabricating evidence is effortless, decisions are made by software, and autonomous systems now produce their own account of the world. <b>Authentication of the physical world has become a machine-scale problem</b> — one that needs a model, a corpus and a capture standard rather than more people in the field.</p>
+      </div>
+      <div class="rev">
+        <div class="co-side">
+          <p><b>What we build</b>An authentication system for the physical world: a trained model, a maintained global reference corpus, and a governed capture standard delivered through an interface institutional systems can call.</p>
+          <p><b>Where we operate</b>Americas, EMEA and APAC, expanding alongside institutional demand.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="sec cta" id="contact">
+  <div class="c cg">
+    <div class="rev">
+      <span class="eyebrow">Get started</span>
+      <h2 class="h-sec">Talk to our enterprise team.</h2>
+      <p class="p-sec">Tell us what you need authenticated and what decision is waiting on it. We respond within one business day.</p>
+      <div style="margin-top:22px">
+        <div class="li"><b>Enterprise deployment</b>Pilot on a live portfolio, integrated to your systems.</div>
+        <div class="li"><b>Technical evaluation</b>API documentation, sandbox access, integration support.</div>
+        <div class="li"><b>Security review</b>Controls documentation and data residency options.</div>
+      </div>
+    </div>
+    <div class="rev">
+      <div class="f" id="form">
+        <div class="two">
+          <div class="r"><label for="n">Name</label><input id="n" type="text" autocomplete="name" placeholder="Jane Smith"/></div>
+          <div class="r"><label for="e">Work email</label><input id="e" type="email" autocomplete="email" placeholder="jane@institution.com"/></div>
+        </div>
+        <div class="r"><label for="o">Organization</label><input id="o" type="text" autocomplete="organization" placeholder="Company name"/></div>
+        <div class="r"><label for="u">Sector</label><select id="u">
+          <option value="">Select…</option><option>Construction finance</option><option>Insurance</option>
+          <option>Commercial lending</option><option>Real-world assets</option><option>Logistics &amp; trade</option>
+          <option>Autonomous systems</option><option>Investor</option><option>Other</option></select></div>
+        <div class="r"><label for="m">What needs authenticating?</label><textarea id="m" rows="3" placeholder="A sentence on the decision this touches."></textarea></div>
+        <button class="btn btn-p" onclick="send()">Request access</button>
+      </div>
+      <div class="done" id="done"><div class="h">✓ Request received</div><p>Thank you. Our enterprise team will respond within one business day.</p></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="c">
+    <div class="f-top">
+      <div class="f-brand">
+        <div class="fl">
+          <svg width="22" height="22" viewBox="0 0 40 40" aria-hidden="true" fill="none">
+            <polygon points="20,3 34,11.5 34,28.5 20,37 6,28.5 6,11.5" stroke="currentColor" stroke-width="1.7"/>
+            <polygon points="20,10.5 27.5,15 27.5,25 20,29.5 12.5,25 12.5,15" stroke="currentColor" stroke-width="1.3" fill="currentColor" fill-opacity=".16"/>
+            <circle cx="20" cy="20" r="2.4" fill="currentColor"/>
+          </svg>
+          Proxyview
+        </div>
+        <p class="f-tag">Authentication for the physical world — for the institutions and systems that act on claims about what happened.</p>
+        <div class="f-badges">
+          <span><span class="sdot"></span>All systems operational</span>
+          <span><span class="adot"></span>Patent pending</span>
+          <span><span class="adot"></span>SOC 2 in progress</span>
+        </div>
+        <div class="f-social">
+          <a href="#" aria-label="LinkedIn"><svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M4.98 3.5a2.5 2.5 0 11-.02 5 2.5 2.5 0 01.02-5zM3 8.98h4v12H3v-12zM10 8.98h3.8v1.64h.05c.53-.95 1.83-1.95 3.76-1.95C21.4 8.67 22 11.2 22 14.4v6.58h-4v-5.84c0-1.39-.03-3.18-1.94-3.18-1.94 0-2.24 1.51-2.24 3.08v5.94h-4v-12z"/></svg></a>
+          <a href="#" aria-label="X"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 2H22l-7.1 8.1L23 22h-6.5l-5.1-6.6L5.6 22H2.5l7.6-8.7L2 2h6.7l4.6 6.1L18.9 2zm-1.1 18h1.7L7.3 3.8H5.5L17.8 20z"/></svg></a>
+          <a href="mailto:hello@getproxyview.com" aria-label="Email"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="2.5" y="4.5" width="19" height="15" rx="2"/><path d="M3 6l9 6.5L21 6"/></svg></a>
+        </div>
+      </div>
+      <nav class="f-nav" aria-label="Footer">
+        <div><h5>Platform</h5>
+          <a href="#system">Governance rail</a><a href="#platform">API &amp; integration</a>
+          <a href="#deploy">Deployment</a><a href="#security">Security &amp; assurance</a></div>
+        <div><h5>Solutions</h5>
+          <a href="construction-finance.html">Construction finance</a><a href="insurance.html">Insurance</a>
+          <a href="commercial-lending.html">Commercial lending</a><a href="real-world-assets.html">Real-world assets</a>
+          <a href="logistics-trade.html">Logistics &amp; trade</a><a href="autonomous-systems.html">Autonomous systems</a></div>
+        <div><h5>Company</h5>
+          <a href="#company">About</a><a href="#applied">For institutions</a>
+          <a href="#contact">Contact</a><a href="mailto:hello@getproxyview.com">hello@getproxyview.com</a></div>
+      </nav>
+    </div>
+    <div class="f-bot">
+      <span>© 2026 Proxyview, Inc. — all rights reserved.</span>
+      <span class="f-legal"><a href="#">Privacy</a><a href="#">Terms</a></span>
+    </div>
+  </div>
+</footer>
+<script>
+const io=new IntersectionObserver(e=>e.forEach(x=>{if(x.isIntersecting){x.target.classList.add('in');io.unobserve(x.target)}}),{threshold:.1});
+document.querySelectorAll('.rev').forEach(el=>io.observe(el));
+addEventListener('scroll',()=>document.getElementById('nav').classList.toggle('on',scrollY>10),{passive:true});
+const bg=document.getElementById('bg'),mob=document.getElementById('mob');
+bg.addEventListener('click',()=>{const o=mob.classList.toggle('open');bg.setAttribute('aria-expanded',o)});
+mob.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>{mob.classList.remove('open');bg.setAttribute('aria-expanded','false')}));
+function send(){
+  const n=document.getElementById('n').value.trim(),e=document.getElementById('e').value.trim(),o=document.getElementById('o').value.trim();
+  if(!n||!e||!o){alert('Please add your name, work email, and organization.');return;}
+  document.getElementById('form').style.display='none';document.getElementById('done').style.display='block';
+}
+
+/* ── authentication signature: coherent vs collapsed (unlabelled) ── */
+(function(){
+  const svg=document.getElementById('sigSvg'); if(!svg) return;
+  const cx=130,cy=125,rMax=88,rMin=16,N=6;
+  const AUTH=[.96,.93,.95,.92,.97,.94];
+  const FAKE=[.94,.27,.90,.55,.93,.34];
+  let cur=new Array(N).fill(0),raf=null,state='a';
+  const pt=(i,r)=>{const a=(-90+i*(360/N))*Math.PI/180;return [cx+Math.cos(a)*r,cy+Math.sin(a)*r];};
+  let bg='';
+  for(let g=1;g<=3;g++){const rr=rMin+(rMax-rMin)*(g/3);let p='';
+    for(let i=0;i<N;i++){const[x,y]=pt(i,rr);p+=x.toFixed(1)+','+y.toFixed(1)+' ';}
+    bg+='<polygon points="'+p+'" fill="none" stroke="rgba(255,255,255,0.07)" stroke-width="1"/>';}
+  for(let i=0;i<N;i++){const[x,y]=pt(i,rMax);
+    bg+='<line x1="'+cx+'" y1="'+cy+'" x2="'+x.toFixed(1)+'" y2="'+y.toFixed(1)+'" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>';}
+  bg+='<defs><radialGradient id="sg" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#22D3EE" stop-opacity=".26"/><stop offset="100%" stop-color="#22D3EE" stop-opacity=".03"/></radialGradient>'+
+      '<radialGradient id="sgf" cx="50%" cy="50%" r="60%"><stop offset="0%" stop-color="#F2764B" stop-opacity=".24"/><stop offset="100%" stop-color="#F2764B" stop-opacity=".03"/></radialGradient></defs>';
+  let dots='<polygon id="sp" points="" fill="url(#sg)" stroke="#22D3EE" stroke-width="2" stroke-linejoin="round"/>';
+  for(let i=0;i<N;i++) dots+='<circle id="sv'+i+'" r="3.4" fill="#22D3EE"/>';
+  dots+='<circle cx="'+cx+'" cy="'+cy+'" r="2.2" fill="#22D3EE" fill-opacity=".65"/>';
+  svg.innerHTML=bg+dots;
+  function render(v){
+    const bad=v.some(x=>x<.5); let p='';
+    for(let i=0;i<N;i++){const r=rMin+(rMax-rMin)*v[i];const[x,y]=pt(i,r);p+=x.toFixed(1)+','+y.toFixed(1)+' ';
+      const c=document.getElementById('sv'+i),low=v[i]<.5;
+      c.setAttribute('cx',x.toFixed(1));c.setAttribute('cy',y.toFixed(1));
+      c.setAttribute('fill',low?'#F2764B':(bad?'#F2764B':'#22D3EE'));c.setAttribute('r',low?'4.4':'3.4');}
+    const poly=document.getElementById('sp');
+    poly.setAttribute('points',p);
+    poly.setAttribute('stroke',bad?'#F2764B':'#22D3EE');
+    poly.setAttribute('fill',bad?'url(#sgf)':'url(#sg)');
+  }
+  function anim(dest){if(raf)cancelAnimationFrame(raf);
+    const step=()=>{let m=false;for(let i=0;i<N;i++){const d=dest[i]-cur[i];
+      if(Math.abs(d)>.004){cur[i]+=d*.16;m=true;}else cur[i]=dest[i];}
+      render(cur); if(m)raf=requestAnimationFrame(step);};step();}
+  window.setSig=function(s){
+    state=s;
+    const ta=document.getElementById('tA');
+    ta.classList.toggle('on',s==='a'); ta.setAttribute('aria-pressed',s==='a');
+    const tf=document.getElementById('tF');
+    tf.classList.toggle('on',s==='f'); tf.classList.toggle('f',s==='f');
+    tf.setAttribute('aria-pressed',s==='f');
+    const v=document.getElementById('sigVerdict'), r=document.getElementById('sigRead');
+    if(s==='a'){v.classList.remove('f');v.textContent='Authenticated · 0.96 confidence';r.textContent='All characteristics corroborate.';anim(AUTH);}
+    else{v.classList.add('f');v.textContent='Not authenticated · 0.21 confidence';r.textContent='Characteristics fail to agree. Held for review.';anim(FAKE);}
+  };
+  const reduce=matchMedia('(prefers-reduced-motion:reduce)').matches;
+  if(reduce){cur=AUTH.slice();render(AUTH);} else {render(cur);setTimeout(()=>anim(AUTH),260);}
+})();
+</script>
+</body>
+</html>
